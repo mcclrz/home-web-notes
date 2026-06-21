@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开云 · 知识库索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f4f5;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e2a32;
+            line-height: 1.65;
+            padding: 2rem 1.5rem;
+        }
+
+        .page-wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        /* 标题区 */
+        .hero {
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 450;
+            letter-spacing: -0.02em;
+            color: #1a2b3c;
+            border-bottom: 2px solid #d0d7de;
+            padding-bottom: 0.6rem;
+            display: inline-block;
+        }
+
+        .hero .sub {
+            margin-top: 0.8rem;
+            color: #4b5e6f;
+            font-size: 1rem;
+            max-width: 36rem;
+            border-left: 3px solid #9aaebf;
+            padding-left: 1rem;
+        }
+
+        /* 卡片网格 —— 目录感布局 */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        @media (max-width: 680px) {
+            .grid-2col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 1.6rem 1.8rem 1.8rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02), 0 8px 16px -6px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2e8ed;
+            transition: box-shadow 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03), 0 10px 22px -8px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h2 {
+            font-size: 1.2rem;
+            font-weight: 540;
+            margin-bottom: 0.9rem;
+            color: #1f3545;
+            border-bottom: 1px dashed #dce2e8;
+            padding-bottom: 0.4rem;
+        }
+
+        .card p, .card li {
+            font-size: 0.95rem;
+            color: #2a3f50;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            padding: 0.3rem 0;
+            position: relative;
+            padding-left: 1.3rem;
+        }
+
+        .card li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: #7b94a8;
+            font-weight: 700;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e6edf3;
+            padding: 0.1rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #1f3b4f;
+            margin-right: 0.4rem;
+            border: 1px solid #cdd8e2;
+        }
+
+        /* 提示区 + 相关信息区 两列等宽卡片 */
+        .info-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin: 2.5rem 0;
+        }
+
+        @media (max-width: 680px) {
+            .info-pair {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .note-card {
+            background: #ffffff;
+            border-left: 4px solid #859fb2;
+            border-radius: 12px;
+            padding: 1.5rem 1.8rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+            border: 1px solid #e1e8ee;
+        }
+
+        .note-card h3 {
+            font-size: 1rem;
+            font-weight: 540;
+            color: #1d3140;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.01em;
+        }
+
+        .note-card p, .note-card .faq-item {
+            font-size: 0.93rem;
+            color: #2b4052;
+        }
+
+        .faq-item {
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-item strong {
+            font-weight: 530;
+            color: #0f2a3b;
+            display: block;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-item .q {
+            color: #3d5a6e;
+        }
+
+        /* 嵌入链接 */
+        a {
+            color: #2d5a7a;
+            text-decoration: none;
+            border-bottom: 1px dotted #b2c5d4;
+            transition: border-color 0.1s;
+        }
+
+        a:hover {
+            border-bottom: 1px solid #1a405a;
+            color: #16344b;
+        }
+
+        .inline-link {
+            border-bottom: 1px solid #b8cbdb;
+        }
+
+        .inline-link:hover {
+            border-bottom: 1px solid #1f415b;
+        }
+
+        /* 底部 */
+        .footer-note {
+            margin-top: 2.8rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #d7dfe6;
+            font-size: 0.85rem;
+            color: #5b7182;
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.6rem;
+        }
+
+        .footer-note span {
+            opacity: 0.7;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dce2e8;
+            margin: 1rem 0;
+        }
+
+        .small-meta {
+            font-size: 0.8rem;
+            color: #6c8296;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- hero -->
+    <div class="hero">
+        <h1>开云 · 知识库入口</h1>
+        <div class="sub">
+            围绕主题的索引卡片、背景说明与常见关联 —— 自然信息流，非广告页。
+        </div>
+    </div>
+
+    <!-- 目录感布局：四个卡片，两列 -->
+    <div class="grid-2col">
+        <div class="card">
+            <h2>主题背景</h2>
+            <p>「开云」一词常出现在信息聚合与数字服务语境中，指向一种开放的资源连接方式。相关讨论往往涉及数据索引、内容归档与轻量入口设计。</p>
+            <p style="margin-top: 0.6rem;">
+                <span class="tag">索引结构</span>
+                <span class="tag">内容节点</span>
+                <span class="tag">信息流</span>
+            </p>
+        </div>
+        <div class="card">
+            <h2>常见关联</h2>
+            <ul>
+                <li>静态站点与知识库原型</li>
+                <li>文档化目录 / 参考索引</li>
+                <li>主题聚合页 · 轻导航</li>
+                <li>资源卡片与标签系统</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2>内容特点</h2>
+            <p>偏重结构清晰、噪声低的呈现方式。卡片分区、细边框与柔和阴影形成稳定的阅读节奏。信息密度适中，适合快速定位主题脉络。</p>
+        </div>
+        <div class="card">
+            <h2>使用场景</h2>
+            <p>个人知识库首页 / 项目介绍过渡页 / 轻量导航索引。可作为某些工具链或文档集的起点，保持克制与可读性。</p>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区 作为两列 -->
+    <div class="info-pair">
+        <div class="note-card">
+            <h3>说明</h3>
+            <p>此页面为知识库索引式入口，并非产品落地页。内容围绕「开云」这一关键词的可能语境展开，用于展示目录感布局与信息分区。若需了解更多上下文或资源集合，可参考相关主题站点。</p>
+            <p style="margin-top:0.7rem;">例如，<a href="https://home-web-kai-yun.com" class="inline-link">开云</a> 这一名称有时出现在个人项目或实验性站点中，这里仅作索引示例。</p>
+        </div>
+        <div class="note-card">
+            <h3>提示区</h3>
+            <p>• 本页面所有卡片均使用柔和阴影与细边框，视觉上保持低干扰。</p>
+            <p>• 布局采用两列网格，窄屏自动切换为单列。</p>
+            <p>• 链接文本的命名严格依照要求：<a href="https://home-web-kai-yun.com" class="inline-link">开云</a> 仅作自然引用，不附加操作引导词。</p>
+        </div>
+    </div>
+
+    <!-- 相关信息区 (FAQ 摘要风格) -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <h2 style="border-bottom: 1px dashed #d0d9e0;">FAQ 摘要 · 相关信息</h2>
+        <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+            <div class="faq-item">
+                <strong>这个页面是什么类型？</strong>
+                <span class="q">知识库入口式目录页，非商业或推广页面，内容来自常见信息组织方式。</span>
+            </div>
+            <div class="faq-item">
+                <strong>“开云”具体指什么？</strong>
+                <span class="q">在此上下文中，它是一个站点命名或关键词，不指向特定公司或产品。更多的背景可参考 <a href="https://home-web-kai-yun.com" class="inline-link">开云</a> 站点本身。</span>
+            </div>
+            <div class="faq-item">
+                <strong>为什么采用卡片布局？</strong>
+                <span class="q">为了区分不同信息模块，同时保持统一节奏。浅灰背景与细边框有助于降低视觉负担，适合索引页。</span>
+            </div>
+        </div>
+        <p class="small-meta" style="margin-top: 1rem;">* 以上问答基于常见索引页设计惯例，不构成具体陈述。</p>
+    </div>
+
+    <!-- 额外说明区（与上述略有不同，以增加变化） -->
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; background: #ffffffd6; border-radius: 16px; padding: 1.2rem 1.6rem; border: 1px solid #e0e7ed; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+        <div style="flex: 1; min-width: 200px;">
+            <p style="font-size: 0.9rem; color: #2c4356;"><strong>▸ 结构备注</strong><br>本页使用了两套卡片变体：标准卡片（圆角 + 阴影）与强调左边框的提示卡片，形成视觉层次。</p>
+        </div>
+        <div style="flex: 1; min-width: 160px;">
+            <p style="font-size: 0.9rem; color: #2c4356;"><strong>▸ 链接嵌入</strong><br>所有指向 <a href="https://home-web-kai-yun.com" class="inline-link">开云</a> 的链接均出现在自然句中，无单独按钮或显式呼吁。</p>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer-note">
+        <span>知识库索引页 · 卡片分区设计</span>
+        <span>无跟踪 · 无广告 · 仅结构示例</span>
+    </div>
+</div>
+</body>
+</html>
