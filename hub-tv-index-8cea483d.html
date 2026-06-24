@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 温和指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fde6cf 0%, #f5d0b0 55%, #ecc1a3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.2rem;
+            line-height: 1.7;
+            color: #3e2e24;
+        }
+
+        .wrapper {
+            max-width: 780px;
+            width: 100%;
+            background: rgba(255, 250, 240, 0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 48px 48px 32px 32px;
+            padding: 2.5rem 2.2rem 3rem;
+            box-shadow: 0 20px 40px rgba(120, 70, 40, 0.15),
+                        0 6px 12px rgba(160, 100, 60, 0.08);
+            transition: box-shadow 0.2s ease;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-tag {
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            color: #9f7b64;
+            background: #efe2d4;
+            display: inline-block;
+            padding: 0.35rem 1.1rem;
+            border-radius: 40px;
+            margin-bottom: 1.6rem;
+            font-weight: 400;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            color: #3f2c1f;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
+        }
+
+        .subhead {
+            font-size: 1.2rem;
+            font-weight: 380;
+            color: #674d38;
+            margin-bottom: 2.2rem;
+            border-left: 3px solid #dab9a3;
+            padding-left: 1.2rem;
+        }
+
+        .intro-text {
+            margin: 1.8rem 0 2rem;
+            font-size: 1.05rem;
+        }
+
+        .intro-text p {
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 2.2rem 0 2rem;
+        }
+
+        .feature-card {
+            background: #fcf6ef;
+            border-radius: 24px;
+            padding: 1.4rem 1.2rem 1.2rem;
+            box-shadow: 0 4px 8px rgba(140, 90, 50, 0.04);
+            transition: all 0.15s;
+            border: 1px solid #efe2d4;
+        }
+
+        .feature-card:hover {
+            background: #faf0e6;
+            border-color: #dcc6b4;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 14px rgba(110, 70, 40, 0.08);
+        }
+
+        .feature-card .emoji {
+            font-size: 1.5rem;
+            display: inline-block;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 520;
+            margin-bottom: 0.2rem;
+            color: #3f2c1f;
+        }
+
+        .feature-card p {
+            font-size: 0.92rem;
+            color: #5a473a;
+        }
+
+        .scene-block {
+            background: #f7ede3;
+            border-radius: 28px;
+            padding: 1.6rem 1.6rem 1.8rem;
+            margin: 2.2rem 0 2rem;
+            border-left: 4px solid #dbb8a1;
+        }
+
+        .scene-block h2 {
+            font-size: 1.3rem;
+            font-weight: 520;
+            margin-bottom: 1rem;
+            color: #3f2c1f;
+        }
+
+        .scene-block ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .scene-block li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            margin-bottom: 0.2rem;
+        }
+
+        .scene-block li::before {
+            content: "·";
+            position: absolute;
+            left: 0.3rem;
+            color: #b28b73;
+            font-weight: bold;
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+
+        .tip-zone {
+            background: #fbf2e9;
+            border-radius: 24px;
+            padding: 1.3rem 1.6rem 1.4rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .tip-zone summary {
+            font-weight: 510;
+            cursor: pointer;
+            color: #4b3628;
+            font-size: 1.05rem;
+            padding: 0.2rem 0;
+        }
+
+        .tip-zone details {
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-zone details p {
+            margin-top: 0.3rem;
+            padding-left: 0.8rem;
+            border-left: 2px solid #dcc1ae;
+            color: #5a473a;
+            font-size: 0.95rem;
+        }
+
+        .link-sentence {
+            background: #f3e6db;
+            border-radius: 40px;
+            padding: 1.2rem 1.8rem;
+            text-align: center;
+            margin: 2rem 0 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .link-sentence a {
+            color: #6b422c;
+            background: transparent;
+            text-decoration: none;
+            font-weight: 530;
+            border-bottom: 2px solid #dbb49b;
+            padding: 0.1rem 0.3rem;
+            transition: background 0.2s, border-color 0.2s;
+            border-radius: 12px;
+        }
+
+        .link-sentence a:hover {
+            background: #dcc1ae;
+            border-bottom-color: #7b543b;
+            color: #2f1e14;
+        }
+
+        .gentle-footer {
+            margin-top: 2.6rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e6d2c2;
+            font-size: 0.9rem;
+            color: #735b4a;
+            text-align: center;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 580px) {
+            .wrapper {
+                padding: 1.8rem 1.2rem 2.4rem;
+                border-radius: 32px;
+            }
+
+            h1 {
+                font-size: 1.9rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 0.9rem;
+            }
+
+            .feature-card {
+                padding: 1rem 1rem 0.9rem;
+            }
+
+            .scene-block {
+                padding: 1.2rem 1rem;
+            }
+
+            .link-sentence {
+                padding: 1rem 1rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+
+            .wrapper {
+                padding: 1.4rem 1rem 2rem;
+            }
+
+            .hero-tag {
+                font-size: 0.75rem;
+            }
+
+            .subhead {
+                font-size: 1rem;
+                padding-left: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="hero-tag">✦ 简短 · 清晰</div>
+    <h1>一次温和的探索</h1>
+    <div class="subhead">从了解开始，慢慢熟悉这里的一切</div>
+
+    <div class="intro-text">
+        <p>如果你正打算了解一个信息更集中的游戏内容站点，不妨给自己几分钟，先看看它的基本脉络。很多朋友初次接触时都会好奇：这里究竟汇集了什么？又该如何顺畅地使用？</p>
+        <p>下面这份简明指南，就是为你准备的。没有复杂的术语，只有一些实在的观察和提醒，帮助你更快地融入这片小天地。</p>
+    </div>
+
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="emoji">📋</div>
+            <h3>分类清晰</h3>
+            <p>内容按主题与类型整理，查找时不用在信息流里反复翻找。</p>
+        </div>
+        <div class="feature-card">
+            <div class="emoji">🔄</div>
+            <h3>稳定更新</h3>
+            <p>保持一定的内容更新节奏，常来看看总会有新的发现。</p>
+        </div>
+        <div class="feature-card">
+            <div class="emoji">🧭</div>
+            <h3>导航简约</h3>
+            <p>页面结构直观，首页、分类、入口一目了然，没有多余的装饰。</p>
+        </div>
+        <div class="feature-card">
+            <div class="emoji">🔐</div>
+            <h3>访问提醒</h3>
+            <p>建议使用常用浏览器并保持网络通畅，体验会更顺畅。</p>
+        </div>
+    </div>
+
+    <div class="scene-block">
+        <h2>☕ 常见使用场景</h2>
+        <ul>
+            <li>闲暇时浏览内容分类，发现感兴趣的主题</li>
+            <li>通过站内指引找到自己需要的信息板块</li>
+            <li>定期回来看看有没有新内容或调整</li>
+            <li>在社区或讨论区里安静地阅读，不一定要发言</li>
+        </ul>
+    </div>
+
+    <div class="tip-zone">
+        <details>
+            <summary>📌 访问前的小提示</summary>
+            <p>如果你在访问过程中遇到页面加载缓慢或显示异常，可以先检查网络连接，或尝试换个浏览器。多数问题都可以通过刷新或等待片刻解决。</p>
+        </details>
+        <details>
+            <summary>❓ 常见疑问摘要</summary>
+            <p>内容是否免费？——网站目前提供的内容大部分可以自由浏览，部分区域可能有说明。是否需要注册？——根据你的需求决定，多数浏览不需要注册。</p>
+        </details>
+    </div>
+
+    <div class="link-sentence">
+        <span>如果你想亲自感受一下，可以从这里直接前往</span>
+        <a href="https://hub-tv-igame.com">爱游戏</a>
+        <span>，慢慢浏览。</span>
+    </div>
+
+    <div class="gentle-footer">
+        <span>希望这份指南对你有所帮助 · 保持轻松，自在探索</span>
+    </div>
+</div>
+</body>
+</html>
